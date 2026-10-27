@@ -917,6 +917,36 @@ abbr[title]:hover{color:var(--red);border-color:var(--red);}
 </style>
 </head>
 <body>
+<div id="bootWarn" role="alert" style="display:none;position:fixed;top:0;left:0;right:0;z-index:9999;background:#b04a33;color:#fffdf7;padding:12px 18px;font:13px/1.7 'Microsoft YaHei',sans-serif;text-align:center">
+  页面似乎没有正常加载。请刷新一次；若仍空白，请把 https://shang571.github.io/changshi/ 复制到 Edge / Chrome 打开。
+</div>
+<noscript>
+  <div style="background:#fff3e2;color:#7a3b12;border-bottom:1px solid #e6c9a8;padding:12px 18px;font:13px/1.7 'Microsoft YaHei',sans-serif;text-align:center">
+    当前浏览器禁用了脚本：章节文字仍可阅读，但搜索、题库与知识图谱不可用。请改用 Edge / Chrome 打开。
+  </div>
+</noscript>
+<script>
+(function(){
+  if(window.NodeList && !NodeList.prototype.forEach) NodeList.prototype.forEach = Array.prototype.forEach;
+  if(window.Element && !Element.prototype.closest){
+    Element.prototype.closest = function(sel){
+      var el=this;
+      while(el && el.nodeType===1){
+        var m=el.matches||el.msMatchesSelector||el.webkitMatchesSelector;
+        if(m && m.call(el,sel)) return el;
+        el=el.parentElement||el.parentNode;
+      }
+      return null;
+    };
+  }
+})();
+setTimeout(function(){
+  if(!document.body.hasAttribute('data-booted')){
+    var w=document.getElementById('bootWarn');
+    if(w) w.style.display='block';
+  }
+}, 5000);
+</script>
 <div class="readbar" id="readbar"></div>
 
 <div class="layout">
@@ -6221,6 +6251,7 @@ document.querySelectorAll('[data-master]').forEach(function(cb){
   if(!(start>=0 && start<TOTAL)) start=0;
   go(start, {noScroll:true});
   window.scrollTo(0,0);
+  document.body.setAttribute('data-booted','1');
 })();
 
 </script>
