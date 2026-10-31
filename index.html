@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="基础会计学 · 会计与财务管理基础：25 章交互式学习台，含真题全解、题库练习、公式速查。">
+<meta name="description" content="基础会计学 · 会计与财务管理基础：26 章交互式学习台，含真题全解、题库练习、公式速查。">
 <title>基础会计学 · 会计与财务管理基础｜学习台</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='3' fill='%23b04a33'/%3E%3Ctext x='32' y='46' font-size='40' text-anchor='middle' fill='%23fbfdff' font-family='serif'%3E%E4%BC%9A%3C/text%3E%3C/svg%3E">
 <style>
@@ -234,6 +234,10 @@ tbody tr:last-child td{border-bottom:1px solid var(--ink2);}
 td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;}
 tr:hover td{background:rgba(251,253,255,.78);}
 table.compact td,table.compact th{padding:6px 10px;font-size:13px;}
+/* 窄屏表格容器：允许横向滚动，避免撑破版心 */
+.tbl-scroll{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;margin:18px 0;}
+.tbl-scroll table{margin:0;}
+@media(max-width:700px){ .tbl-scroll table{min-width:520px;} }
 
 /* 公式 */
 .formula{
@@ -917,6 +921,36 @@ abbr[title]:hover{color:var(--red);border-color:var(--red);}
 </style>
 </head>
 <body>
+<div id="bootWarn" role="alert" style="display:none;position:fixed;top:0;left:0;right:0;z-index:9999;background:#b04a33;color:#fffdf7;padding:12px 18px;font:13px/1.7 'Microsoft YaHei',sans-serif;text-align:center">
+  页面似乎没有正常加载。请刷新一次；若仍空白，请把 https://shang571.github.io/changshi/ 复制到 Edge / Chrome 打开。
+</div>
+<noscript>
+  <div style="background:#fff3e2;color:#7a3b12;border-bottom:1px solid #e6c9a8;padding:12px 18px;font:13px/1.7 'Microsoft YaHei',sans-serif;text-align:center">
+    当前浏览器禁用了脚本：章节文字仍可阅读，但搜索、题库与知识图谱不可用。请改用 Edge / Chrome 打开。
+  </div>
+</noscript>
+<script>
+(function(){
+  if(window.NodeList && !NodeList.prototype.forEach) NodeList.prototype.forEach = Array.prototype.forEach;
+  if(window.Element && !Element.prototype.closest){
+    Element.prototype.closest = function(sel){
+      var el=this;
+      while(el && el.nodeType===1){
+        var m=el.matches||el.msMatchesSelector||el.webkitMatchesSelector;
+        if(m && m.call(el,sel)) return el;
+        el=el.parentElement||el.parentNode;
+      }
+      return null;
+    };
+  }
+})();
+setTimeout(function(){
+  if(!document.body.hasAttribute('data-booted')){
+    var w=document.getElementById('bootWarn');
+    if(w) w.style.display='block';
+  }
+}, 5000);
+</script>
 <div class="readbar" id="readbar"></div>
 
 <div class="layout">
@@ -934,7 +968,7 @@ abbr[title]:hover{color:var(--red);border-color:var(--red);}
   <button class="sb-kg" type="button" data-kg>
     <svg viewBox="0 0 16 16"><circle cx="4" cy="4.4" r="1.6"/><circle cx="12" cy="5.2" r="1.6"/><circle cx="8" cy="12" r="1.6"/><path d="M5.4 5.3 7.1 10.5M10.8 6.3 9 10.7M5.7 4.5h4.6"/></svg>
     <span>知识图谱</span>
-    <em>92 个知识点</em>
+    <em>95 个知识点</em>
   </button>
 
   <nav class="sb-nav" id="sbnav" aria-label="章节目录">
@@ -957,23 +991,24 @@ abbr[title]:hover{color:var(--red);border-color:var(--red);}
     <a class="nav-item" data-ch="11"><span class="n">12</span>销售过程核算</a>
     <a class="nav-item" data-ch="12"><span class="n">13</span>财务成果核算</a>
 
-    <div class="nav-group">卷四 · 财务报告</div>
+    <div class="nav-group">卷四 · 业务核算与报告</div>
     <a class="nav-item" data-ch="13"><span class="n">14</span>四大财务报表</a>
+    <a class="nav-item" data-ch="14"><span class="n">15</span>润叶家具 · 全流程案例</a>
 
     <div class="nav-group">卷五 · 财务管理</div>
-    <a class="nav-item" data-ch="14"><span class="n">15</span>财务管理导论</a>
-    <a class="nav-item" data-ch="15"><span class="n">16</span>货币时间价值</a>
-    <a class="nav-item" data-ch="16"><span class="n">17</span>风险与收益</a>
-    <a class="nav-item" data-ch="17"><span class="n">18</span>资本预算决策</a>
-    <a class="nav-item" data-ch="18"><span class="n">19</span>资本成本与资本结构</a>
-    <a class="nav-item" data-ch="19"><span class="n">20</span>营运资本管理</a>
-    <a class="nav-item" data-ch="20"><span class="n">21</span>财务报表分析</a>
-    <a class="nav-item" data-ch="21"><span class="n">22</span>长期筹资与股利政策</a>
+    <a class="nav-item" data-ch="15"><span class="n">16</span>财务管理导论</a>
+    <a class="nav-item" data-ch="16"><span class="n">17</span>货币时间价值</a>
+    <a class="nav-item" data-ch="17"><span class="n">18</span>风险与收益</a>
+    <a class="nav-item" data-ch="18"><span class="n">19</span>资本预算决策</a>
+    <a class="nav-item" data-ch="19"><span class="n">20</span>资本成本与资本结构</a>
+    <a class="nav-item" data-ch="20"><span class="n">21</span>营运资本管理</a>
+    <a class="nav-item" data-ch="21"><span class="n">22</span>财务报表分析</a>
+    <a class="nav-item" data-ch="22"><span class="n">23</span>长期筹资与股利政策</a>
 
     <div class="nav-group">卷六 · 备考</div>
-    <a class="nav-item" data-ch="22"><span class="n">23</span>真题全解 · 24251</a>
-    <a class="nav-item" data-ch="23"><span class="n">24</span>题库练习</a>
-    <a class="nav-item" data-ch="24"><span class="n">25</span>公式 · 分录 · 考前清单</a>
+    <a class="nav-item" data-ch="23"><span class="n">24</span>真题全解 · 24251</a>
+    <a class="nav-item" data-ch="24"><span class="n">25</span>题库练习</a>
+    <a class="nav-item" data-ch="25"><span class="n">26</span>公式 · 分录 · 考前清单</a>
   </nav>
 
   <div class="sb-foot">
@@ -1153,6 +1188,7 @@ abbr[title]:hover{color:var(--red);border-color:var(--red);}
 
   <h4>（四）货币计量 —— 限定计量单位</h4>
   <p>指会计主体在确认、计量和报告时<strong>以货币进行计量</strong>，反映生产经营活动。</p>
+  <p style="font-size:13.5px">课件中这一条也写作<strong>「货币计价」</strong>（旧称），完整表述是：<strong>以货币作为主要计量单位（记账本位币），并假定币值是稳定的</strong>。两个要点缺一不可 —— 「用货币」解决<strong>计量单位</strong>问题，「币值稳定」解决<strong>可比性</strong>问题。</p>
   <div class="card warn">
     <div class="card-t">局限</div>
     <p style="margin:0">货币计量假设隐含「币值稳定」前提。当发生严重通货膨胀时，历史成本信息会失真。同时，无法用货币衡量的重要因素（如员工能力、品牌影响力、技术专利的实际价值）无法进入报表。</p>
@@ -1169,7 +1205,7 @@ abbr[title]:hover{color:var(--red);border-color:var(--red);}
 
   <div class="kg-entry" data-kg>
     <div class="kg-entry-t">知识地图</div>
-    <p>92 个知识点已经连成一张网：从会计假设到资本成本，看它们如何彼此支撑、又该按什么顺序学。</p>
+    <p>95 个知识点已经连成一张网：从会计假设到资本成本，看它们如何彼此支撑、又该按什么顺序学。</p>
     <span>打开知识点网络 →</span>
   </div>
 </section>
@@ -1533,7 +1569,7 @@ abbr[title]:hover{color:var(--red);border-color:var(--red);}
     <tbody>
       <tr><td><strong>客观性</strong><br><span style="font-size:11px;color:var(--muted)">可靠性</span></td><td>真实可靠、内容完整</td><td>以<strong>实际发生的交易或事项</strong>为依据进行确认、计量和报告，如实反映各项会计要素</td></tr>
       <tr><td><strong>相关性</strong></td><td>对决策有用</td><td>与财务报告使用者的<strong>经济决策需要相关</strong>，有助于评价过去、现在或未来的情况</td></tr>
-      <tr><td><strong>可理解性</strong><br><span style="font-size:11px;color:var(--muted)">明晰性</span></td><td>看得懂</td><td>清晰明了，便于使用者<strong>理解和使用</strong></td></tr>
+      <tr><td><strong>明晰性</strong><br><span style="font-size:11px;color:var(--muted)">准则称「可理解性」</span></td><td>看得懂</td><td>清晰明了，便于财务报告使用者<strong>理解和使用</strong></td></tr>
       <tr><td><strong>可比性</strong></td><td>能横向纵向比较</td><td><strong>纵向可比</strong>：同一企业不同时期采用一致会计政策，不得随意变更<br><strong>横向可比</strong>：不同企业相同业务采用一致政策</td></tr>
       <tr><td><strong>实质重于形式</strong></td><td>看经济实质，不看法律形式</td><td>按交易或事项的<strong>经济实质</strong>确认计量，不应仅以法律形式为依据<br><span style="font-size:12px;color:var(--gold)">课件思考：售后回租的本质</span></td></tr>
       <tr><td><strong>重要性</strong></td><td>重要的必须说清楚</td><td>若信息的<strong>省略或错报会影响使用者决策</strong>，则该信息具有重要性</td></tr>
@@ -1541,6 +1577,11 @@ abbr[title]:hover{color:var(--red);border-color:var(--red);}
       <tr><td><strong>及时性</strong></td><td>不能拖</td><td>及时确认计量报告，<strong>不得提前或延后</strong>。信息再可靠，不及时也会失去效用</td></tr>
     </tbody>
   </table>
+
+  <div class="card soft">
+    <div class="card-t">名称对照：课件用词 vs 准则用词</div>
+    <p style="margin:0; font-size:13.5px">课件（2026 版）把第三条写作<strong>「明晰性」</strong>，而《企业会计准则——基本准则》的正式表述是<strong>「可理解性」</strong>，两者是同一项要求。同理，课件中的<strong>「客观性」</strong>对应准则的<strong>「可靠性」</strong>。答题时两种叫法都对，但写准则原名更稳妥。</p>
+  </div>
 
   <div class="card warn">
     <div class="card-t">最容易被考到的两项</div>
@@ -2885,7 +2926,21 @@ abbr[title]:hover{color:var(--red);border-color:var(--red);}
     <div class="formula" style="margin:10px 0 0; background:#fff; border-color:var(--line)">
       应纳增值税 = 销项税额 − 进项税额
     </div>
-    <p style="margin:10px 0 0; font-size:13.5px">销项税额是卖东西时向客户收的税；进项税额是买东西时向供应商付的税。企业只就<strong>增值部分</strong>纳税，所以叫"增值税"。</p>
+    <p style="margin:10px 0 0; font-size:13.5px">销项税额是卖东西时向客户收的税；进项税额是买东西时向供应商付的税。企业只就<strong>增值部分</strong>纳税，所以叫「增值税」。</p>
+  </div>
+
+  <h4>两类纳税人的计税方法（课件要点）</h4>
+  <table>
+    <thead><tr><th style="width:130px">纳税人</th><th>计税方法</th><th>应纳税额</th></tr></thead>
+    <tbody>
+      <tr><td><strong>一般纳税人</strong></td><td><strong>抵扣制</strong>：进项税额可以抵扣销项税额（税率视行业而定）</td><td>本期销项税 − 本期进项税</td></tr>
+      <tr><td><strong>小规模纳税人</strong></td><td><strong>简易计税</strong>：不得抵扣进项，直接按征收率算</td><td>销售额 × 适用税率（3%）</td></tr>
+      <tr><td><strong>零税率</strong></td><td>出口货物、跨境销售服务与无形资产，税率为零</td><td>不仅不征，还要退还以前环节已缴的增值税</td></tr>
+    </tbody>
+  </table>
+  <div class="card warn">
+    <div class="card-t">零税率 ≠ 免税</div>
+    <p style="margin:0"><strong>免税</strong>只是这一环节不征，前面环节缴的税退不回来，税负仍然留在成本里；<strong>零税率</strong>是这一环节税率为 0，且<strong>退还以前环节已缴的增值税</strong>，货物以完全不含税的价格进入国际市场。这就是出口退税的理论依据。</p>
   </div>
 
   <div class="card">
@@ -3005,7 +3060,8 @@ abbr[title]:hover{color:var(--red);border-color:var(--red);}
     <div class="cap"><b>图 14-1</b>　四大财务报表：静态的家底 + 动态的成果、现金与权益变动</div>
   </div>
 
-  <h3>二、编制报表的六项基本要求</h3>
+  <h3>二、编制报表的八项基本要求</h3>
+  <p>课件（2026 版）把列报要求列为八条：前六条讲「怎么编」，后两条讲「编到什么程度」。</p>
   <div class="card soft">
     <ol style="margin:0">
       <li>应依据<strong>实际发生的交易和事项</strong>编制财务报表</li>
@@ -3013,12 +3069,15 @@ abbr[title]:hover{color:var(--red);border-color:var(--red);}
       <li>除<strong>现金流量表</strong>按收付实现制编制外，企业应按<strong>权责发生制</strong>编制财务报表</li>
       <li>报表项目在前后各期<strong>保持一致</strong>，不得随意变更</li>
       <li><strong>重要项目单独列报</strong></li>
-      <li>报表项目应以<strong>总额</strong>列报（不得随意抵销）</li>
+      <li>报表项目应以<strong>总额</strong>列报 —— 资产和负债、收入和费用、直接计入当期利润的利得和损失<strong>不能相互抵消</strong></li>
+      <li>列报当期财务报表时，应当<strong>至少提供与上一个会计期间的比较数据</strong></li>
+      <li>企业<strong>至少应当编制年度财务报表</strong></li>
     </ol>
   </div>
   <div class="card warn">
-    <div class="card-t">第 3 条是易考点</div>
-    <p style="margin:0">现金流量表是<strong>唯一</strong>按收付实现制编制的报表，其余报表都按权责发生制。原因很直观：现金流量表就是要看"钱实际进出"了多少。</p>
+    <div class="card-t">第 3 条与第 6 条是易考点</div>
+    <p style="margin:0">① 现金流量表是<strong>唯一</strong>按收付实现制编制的报表，其余报表都按权责发生制 —— 原因很直观：现金流量表就是要看「钱实际进出」了多少。</p>
+    <p style="margin:8px 0 0">② <strong>不得抵消</strong>是「总额列报」的核心。把应收与应付轧差、把收入与费用对冲，报表会「变干净」但失真：一家同时有 1 亿应收和 1 亿应付的企业，轧成 0 之后，既看不出它的销售规模，也看不出它的偿债压力。</p>
   </div>
 
   <h3>三、资产负债表</h3>
@@ -3080,10 +3139,13 @@ abbr[title]:hover{color:var(--red);border-color:var(--red);}
         <tr><td style="padding-left:28px">　　税金及附加</td><td></td></tr>
         <tr><td style="padding-left:28px">　　销售费用</td><td></td></tr>
         <tr><td style="padding-left:28px">　　管理费用</td><td></td></tr>
-        <tr><td style="padding-left:28px">　　研发费用</td><td></td></tr>
         <tr><td style="padding-left:28px">　　财务费用</td><td></td></tr>
-        <tr><td style="padding-left:28px">　　资产减值损失 / 信用减值损失</td><td></td></tr>
-        <tr><td style="padding-left:28px">加：资产处置损益、公允价值变动损益、投资收益</td><td></td></tr>
+        <tr><td style="padding-left:28px">　　研发费用</td><td></td></tr>
+        <tr><td style="padding-left:28px">　　资产减值损失</td><td></td></tr>
+        <tr><td style="padding-left:28px">　　信用减值损失</td><td></td></tr>
+        <tr><td style="padding-left:28px">加：公允价值变动损益</td><td></td></tr>
+        <tr><td style="padding-left:28px">　　投资收益</td><td></td></tr>
+        <tr><td style="padding-left:28px">　　资产处置损益</td><td></td></tr>
         <tr style="background:var(--green-bg)"><td><strong>二、营业利润</strong></td><td></td></tr>
         <tr><td style="padding-left:28px">加：营业外收入　减：营业外支出</td><td></td></tr>
         <tr style="background:var(--green-bg)"><td><strong>三、利润总额</strong></td><td></td></tr>
@@ -3091,6 +3153,12 @@ abbr[title]:hover{color:var(--red);border-color:var(--red);}
         <tr style="background:var(--green-bg)"><td><strong>四、净利润</strong></td><td></td></tr>
       </tbody>
     </table>
+    <p style="margin:10px 0 0; font-size:12.5px; color:var(--muted)">课件版式还有「行次」「本月数」「本年累计数」三列 —— 行次是财政部统一规定的固定编号，方便跨企业比对；本月数看当期，本年累计数看趋势。</p>
+  </div>
+
+  <div class="card warn">
+    <div class="card-t">两个「减值损失」别混</div>
+    <p style="margin:0"><strong>信用减值损失</strong>针对<strong>金融资产</strong>（应收账款、其他应收款、债权投资等）计提的预期信用损失；<strong>资产减值损失</strong>针对<strong>非金融资产</strong>（固定资产、存货、无形资产等）计提的减值。前者看「对方还不还得上」，后者看「东西还值不值这个价」。</p>
   </div>
 
   <h3>五、现金流量表</h3>
@@ -3137,15 +3205,49 @@ abbr[title]:hover{color:var(--red);border-color:var(--red);}
   <div class="defn">
     <p>附注是对资产负债表、利润表、现金流量表等报表中所列项目的<strong>文字描述或者详细说明</strong>，以及对未能在这些报表中列示的项目的说明。</p>
   </div>
-  <p>附注至少应包括：</p>
-  <ol style="font-size:13.5px">
-    <li>企业的基本情况</li>
-    <li>财务报表的编制基础</li>
-    <li>遵循企业会计准则的声明</li>
-    <li>重要会计政策和会计估计</li>
-    <li>会计政策和会计估计变更</li>
-    <li>报表重要项目的说明</li>
-  </ol>
+  <p>附注至少应包括以下九项：</p>
+  <div class="two">
+    <ol style="font-size:13.5px; margin:0">
+      <li>企业的基本情况</li>
+      <li>财务报表的编制基础</li>
+      <li>遵循企业会计准则的声明</li>
+      <li>重要会计政策和会计估计</li>
+      <li>会计政策和会计估计变更以及差错更正的说明</li>
+    </ol>
+    <ol start="6" style="font-size:13.5px; margin:0">
+      <li>重要报表项目说明</li>
+      <li>或有事项</li>
+      <li>资产负债表日后事项</li>
+      <li>关联方关系及交易</li>
+    </ol>
+  </div>
+  <p style="font-size:13px; color:var(--muted)">前六项回答「报表是怎么编出来的」，后三项回答「报表之外还有什么可能改变判断的事」。考试里常把后三项单独拎出来问 —— 它们恰恰是报表数字<strong>看不出来</strong>的风险。</p>
+
+  <h3>七、读报表时还要关注什么</h3>
+  <p>附注之外，还有六类信息会影响你对一家企业的判断，课件把它们单列成表：</p>
+  <table>
+    <thead><tr><th style="width:120px">关注事项</th><th>具体说明</th></tr></thead>
+    <tbody>
+      <tr><td><strong>审计报告</strong></td><td>四种意见：<strong>无保留意见</strong>、<strong>保留意见</strong>、<strong>无法发表意见</strong>、<strong>否定意见</strong>。后三种都意味着报表可靠性存疑</td></tr>
+      <tr><td><strong>会计方法</strong></td><td>存货计价、折旧、计提坏账准备等方法的运用和变更 —— 方法一变，利润就变</td></tr>
+      <tr><td><strong>关联方交易</strong></td><td>交易价格是否公允、有无转移资金</td></tr>
+      <tr><td><strong>日后事项</strong></td><td>资产负债表日后发生的非调整事项，如重大投资、意外损失、重大经济纠纷</td></tr>
+      <tr><td><strong>或有损失</strong></td><td>经济诉讼、税收争议、对外担保等事项</td></tr>
+      <tr><td><strong>持续经营能力</strong></td><td>财务迹象：资不抵债、无法还债、亏损数额巨大、大量不良资产等</td></tr>
+    </tbody>
+  </table>
+
+  <div class="card key">
+    <div class="card-t">三张表的总结评价（课件原话）</div>
+    <p style="margin:0 0 10px"><strong>资产负债表是「底子」，利润表是「面子」，现金流量表是「日子」。</strong>三张表分别从不同层面反映企业财务信息，结合阅读才能全面了解企业财务现状与未来。</p>
+    <ul style="margin:0; font-size:13.5px">
+      <li>会计利润只是<strong>数字</strong>，现金流量才是<strong>客观事实</strong></li>
+      <li>资产不是越高越好，关键是<strong>是不是优质资产</strong></li>
+      <li>负债不是越低越好，关键是负债经营是否发挥了<strong>财务杠杆的放大作用</strong></li>
+      <li>净资产主要看<strong>净收益增加了多少</strong></li>
+    </ul>
+    <p style="margin:10px 0 0; font-size:13px; color:var(--muted)">落到部门上就是四句话：销售部门增加收入，生产部门控制成本，职能部门控制费用，财务部门决策优化。</p>
+  </div>
 
   <div class="quiz" data-q="13">
     <div class="quiz-h">随 堂 检 测</div>
@@ -3157,10 +3259,211 @@ abbr[title]:hover{color:var(--red);border-color:var(--red);}
   </div>
 </section>
 
-<!-- ==================== 15 财务管理导论 ==================== -->
+<!-- ==================== 15 润叶家具综合案例 ==================== -->
 <section class="chapter" data-ch="14">
-  <div class="chead fin">
+  <div class="chead">
     <span class="chnum">15</span>
+    <div class="chead-body">
+      <div class="kicker">案例精讲 · 第三章综合</div>
+      <h2>润叶家具：一笔订单走完全流程</h2>
+      <div class="desc">从买木料到收货款，一张写字桌和一把椅子把第三章所有分录串成一条线</div>
+    </div>
+  </div>
+
+  <div class="card key">
+    <div class="card-t">为什么这个案例值得单独看一遍</div>
+    <p style="margin:0">前面几章是<strong>按环节拆开讲</strong>的：供应、生产、销售各管一段。真实业务不是这样 —— 一笔订单会横穿全部环节，钱在「银行存款 → 在途物资 → 原材料 → 生产成本 → 库存商品 → 主营业务成本」之间一路流动。<strong>把这条链走通一遍，第三章才算真的会了。</strong></p>
+  </div>
+
+  <h3>一、业务背景</h3>
+  <p>润叶家具有限公司为<strong>增值税一般纳税人</strong>，2019 年 3 月 1 日接到一份订单，生产<strong>一张写字桌和一把椅子</strong>。整笔订单的经过如下：</p>
+  <table>
+    <thead><tr><th style="width:96px;white-space:nowrap">日期</th><th>发生了什么</th><th style="width:150px;white-space:nowrap">对应环节</th></tr></thead>
+    <tbody>
+      <tr><td>3 月 10 日</td><td>从金秋林业采购木料，专用发票注明原材料 <strong>2 000 元</strong>、增值税 <strong>260 元</strong>，价税合计 2 260 元，款项已付</td><td>供应 · 采购</td></tr>
+      <tr><td>3 月 20 日</td><td>卖方送货，货物经长途运输运达并<strong>验收入库</strong></td><td>供应 · 入库</td></tr>
+      <tr><td>3 月 21 日</td><td>生产车间领用该批木料，写字桌与椅子<strong>各用 1 000 元</strong></td><td>生产 · 直接材料</td></tr>
+      <tr><td>3 月</td><td>车间工人工资共 <strong>1 200 元</strong>，按劳动量分配：写字桌 900 元、椅子 300 元</td><td>生产 · 直接人工</td></tr>
+      <tr><td>3 月</td><td>车间间接代价：水电费 <strong>100 元</strong>（已付）、车间主任薪酬 <strong>700 元</strong>、车间固定资产折旧 <strong>2 000 元</strong></td><td>生产 · 制造费用</td></tr>
+      <tr><td>3 月末</td><td>制造费用 <strong>2 800 元</strong>按公司分配办法由写字桌、椅子各分摊 <strong>1 400 元</strong></td><td>生产 · 费用分配</td></tr>
+      <tr><td>3 月末</td><td>产品完工，从车间搬运至仓库</td><td>生产 · 完工入库</td></tr>
+      <tr><td>3 月 31 日</td><td>按合同交货并开出专用发票：价款 <strong>10 000 元</strong>、税款 <strong>1 300 元</strong>，价税合计 11 300 元，货款已入账</td><td>销售 · 收入与成本</td></tr>
+    </tbody>
+  </table>
+
+  <h3>二、第一步：采购（3 月 10 日）</h3>
+  <p>关键判断：<strong>钱付了，货还没到</strong>。此时木料的所有权已经归润叶，但实物在运输途中，不能直接记「原材料」，要先挂在<strong>「在途物资」</strong>。</p>
+  <div class="entry">
+    <div class="entry-h">3 月 10 日 · 采购木料</div>
+    <div class="entry-b">
+      <div class="line"><span><span class="dr">借：</span>在途物资</span><span class="amt">2 000</span></div>
+      <div class="line"><span><span class="dr">借：</span>应交税费—应交增值税（进项税额）</span><span class="amt">260</span></div>
+      <div class="line"><span><span class="cr">贷：</span>银行存款</span><span class="amt">2 260</span></div>
+    </div>
+  </div>
+  <p style="font-size:13px; color:var(--muted)">为什么进项税额单独记？因为一般纳税人这 260 元<strong>可以抵扣</strong>，它不是成本，而是「预先交给税务局、以后能抵掉的钱」，属于资产性质。</p>
+
+  <h3>三、第二步：验收入库（3 月 20 日）</h3>
+  <p>货到了，实物进入仓库，「在途物资」这个临时中转站就该清空，把成本转进「原材料」。</p>
+  <div class="entry">
+    <div class="entry-h">3 月 20 日 · 验收入库</div>
+    <div class="entry-b">
+      <div class="line"><span><span class="dr">借：</span>原材料</span><span class="amt">2 000</span></div>
+      <div class="line"><span><span class="cr">贷：</span>在途物资</span><span class="amt">2 000</span></div>
+    </div>
+  </div>
+  <div class="card soft">
+    <div class="card-t">这一步只是「换个地方放」</div>
+    <p style="margin:0">资产总额没变，只是从「在途物资」挪到了「原材料」。会计上把这类分录叫<strong>转账分录</strong> —— 不涉及货币资金收付，只改变资产内部结构。这也解释了为什么记账凭证要分收款、付款、转账三类。</p>
+  </div>
+
+  <h3>四、第三步：生产领料（3 月 21 日）</h3>
+  <p>木料离开仓库进入车间，身份从「存货」变成「在产品」。写字桌和椅子各用 1 000 元，能直接分清是给谁用的，所以<strong>直接计入各自的生产成本</strong>，不需要分配。</p>
+  <div class="entry">
+    <div class="entry-h">3 月 21 日 · 领用原材料</div>
+    <div class="entry-b">
+      <div class="line"><span><span class="dr">借：</span>生产成本—写字桌</span><span class="amt">1 000</span></div>
+      <div class="line"><span><span class="dr">借：</span>生产成本—椅子</span><span class="amt">1 000</span></div>
+      <div class="line"><span><span class="cr">贷：</span>原材料</span><span class="amt">2 000</span></div>
+    </div>
+  </div>
+
+  <h3>五、第四步：人工费（3 月）</h3>
+  <p>车间工人工资 1 200 元，按劳动量分给两种产品：写字桌 900 元、椅子 300 元。工人是<strong>直接参与生产</strong>的，所以进「生产成本」而不是「制造费用」。</p>
+  <div class="entry">
+    <div class="entry-h">计提工资</div>
+    <div class="entry-b">
+      <div class="line"><span><span class="dr">借：</span>生产成本—写字桌</span><span class="amt">900</span></div>
+      <div class="line"><span><span class="dr">借：</span>生产成本—椅子</span><span class="amt">300</span></div>
+      <div class="line"><span><span class="cr">贷：</span>应付职工薪酬</span><span class="amt">1 200</span></div>
+    </div>
+  </div>
+  <div class="entry">
+    <div class="entry-h">实际发放</div>
+    <div class="entry-b">
+      <div class="line"><span><span class="dr">借：</span>应付职工薪酬</span><span class="amt">1 200</span></div>
+      <div class="line"><span><span class="cr">贷：</span>银行存款</span><span class="amt">1 200</span></div>
+    </div>
+  </div>
+  <div class="card warn">
+    <div class="card-t">计提与发放是两笔，别合并</div>
+    <p style="margin:0">「计提」解决的是<strong>费用归属哪个月</strong>（权责发生制），「发放」解决的是<strong>钱什么时候出去</strong>。3 月的工资哪怕 4 月才发，3 月也必须计提 —— 这正是权责发生制在人工成本上的体现。</p>
+  </div>
+
+  <h3>六、第五步：制造费用归集（3 月）</h3>
+  <p>车间里还有三项间接代价：水电费 100 元（已付）、车间主任薪酬 700 元、车间设备折旧 2 000 元。它们<strong>无法直接分清是给写字桌还是椅子用的</strong>，所以先统统归到「制造费用」这个池子里。</p>
+  <div class="entry">
+    <div class="entry-h">归集制造费用</div>
+    <div class="entry-b">
+      <div class="line"><span><span class="dr">借：</span>制造费用</span><span class="amt">2 800</span></div>
+      <div class="line"><span><span class="cr">贷：</span>银行存款</span><span class="amt">100</span></div>
+      <div class="line"><span><span class="cr">贷：</span>应付职工薪酬</span><span class="amt">700</span></div>
+      <div class="line"><span><span class="cr">贷：</span>累计折旧</span><span class="amt">2 000</span></div>
+    </div>
+  </div>
+  <p style="font-size:13px; color:var(--muted)">注意折旧贷记的是<strong>「累计折旧」</strong>而不是「固定资产」—— 固定资产原值留在账上不动，另设一个备抵科目记录「已经磨损掉多少」，这样既能看到原值，也能看到新旧程度。</p>
+
+  <h3>七、第六步：制造费用分配（3 月末）</h3>
+  <p>池子里的 2 800 元要在期末分给两种产品。按公司成本分配办法，写字桌与椅子<strong>各分摊 1 400 元</strong>。</p>
+  <div class="entry">
+    <div class="entry-h">分配制造费用</div>
+    <div class="entry-b">
+      <div class="line"><span><span class="dr">借：</span>生产成本—写字桌</span><span class="amt">1 400</span></div>
+      <div class="line"><span><span class="dr">借：</span>生产成本—椅子</span><span class="amt">1 400</span></div>
+      <div class="line"><span><span class="cr">贷：</span>制造费用</span><span class="amt">2 800</span></div>
+    </div>
+  </div>
+  <p>分配之后，「制造费用」科目<strong>余额为零</strong>。这是它的特点：只做中转，不留余额。</p>
+
+  <h3>八、第七步：完工入库（3 月末）</h3>
+  <p>产品做完了，从车间搬进仓库。此时把「生产成本」里归集的全部金额，转成「库存商品」的成本。</p>
+  <div class="two">
+    <div class="card soft" style="margin:0">
+      <div class="card-t">写字桌的加工成本</div>
+      <div class="formula" style="margin:6px 0 0; border:0; padding:8px 0; font-size:15px; text-align:left">
+        1 000（材料） + 900（人工） + 1 400（制造费用） = <strong>3 300 元</strong>
+      </div>
+    </div>
+    <div class="card soft" style="margin:0">
+      <div class="card-t">椅子的加工成本</div>
+      <div class="formula" style="margin:6px 0 0; border:0; padding:8px 0; font-size:15px; text-align:left">
+        1 000（材料） + 300（人工） + 1 400（制造费用） = <strong>2 700 元</strong>
+      </div>
+    </div>
+  </div>
+  <div class="entry">
+    <div class="entry-h">完工入库</div>
+    <div class="entry-b">
+      <div class="line"><span><span class="dr">借：</span>库存商品—写字桌</span><span class="amt">3 300</span></div>
+      <div class="line"><span><span class="dr">借：</span>库存商品—椅子</span><span class="amt">2 700</span></div>
+      <div class="line"><span><span class="cr">贷：</span>生产成本—写字桌</span><span class="amt">3 300</span></div>
+      <div class="line"><span><span class="cr">贷：</span>生产成本—椅子</span><span class="amt">2 700</span></div>
+    </div>
+  </div>
+  <div class="card soft">
+    <div class="card-t">「库存商品」的记账方向</div>
+    <p style="margin:0">借方登记<strong>增加</strong>（完工入库），贷方登记<strong>减少</strong>（对外销售结转成本），期末余额在借方，反映企业<strong>库存产成品的成本</strong>。它是资产类科目，方向与「原材料」一致。</p>
+  </div>
+
+  <h3>九、第八步：销售（3 月 31 日）</h3>
+  <p>交货开票，价款 10 000 元、税款 1 300 元，货款已划入银行。销售要拆成<strong>两笔</strong>：一笔确认收入，一笔结转成本。</p>
+  <div class="entry">
+    <div class="entry-h">① 取得销售收入</div>
+    <div class="entry-b">
+      <div class="line"><span><span class="dr">借：</span>银行存款</span><span class="amt">11 300</span></div>
+      <div class="line"><span><span class="cr">贷：</span>主营业务收入</span><span class="amt">10 000</span></div>
+      <div class="line"><span><span class="cr">贷：</span>应交税费—应交增值税（销项税额）</span><span class="amt">1 300</span></div>
+    </div>
+  </div>
+  <div class="entry">
+    <div class="entry-h">② 结转销售成本</div>
+    <div class="entry-b">
+      <div class="line"><span><span class="dr">借：</span>主营业务成本</span><span class="amt">6 000</span></div>
+      <div class="line"><span><span class="cr">贷：</span>库存商品—写字桌</span><span class="amt">3 300</span></div>
+      <div class="line"><span><span class="cr">贷：</span>库存商品—椅子</span><span class="amt">2 700</span></div>
+    </div>
+  </div>
+  <div class="card key">
+    <div class="card-t">这笔订单赚了多少</div>
+    <p style="margin:0">收入 10 000 − 成本 6 000 = <strong>毛利 4 000 元</strong>，毛利率 40%。注意 1 300 元增值税<strong>不算收入也不算成本</strong> —— 它只是替税务局代收的，最终由客户承担。</p>
+  </div>
+
+  <h3>十、把整条链串起来看</h3>
+  <p>同一笔 2 000 元的木料，在账上走了五个身份。看懂这张表，就理解了「成本是怎么一步步滚出来的」：</p>
+  <table>
+    <thead><tr><th style="width:130px">科目</th><th style="width:110px">金额</th><th>它此刻代表什么</th></tr></thead>
+    <tbody>
+      <tr><td><strong>在途物资</strong></td><td>2 000</td><td>钱付了、货在路上，所有权已归企业</td></tr>
+      <tr><td><strong>原材料</strong></td><td>2 000</td><td>货进仓库，等着被领用</td></tr>
+      <tr><td><strong>生产成本</strong></td><td>2 000 → 6 000</td><td>进入车间后不断「吸收」人工与制造费用</td></tr>
+      <tr><td><strong>库存商品</strong></td><td>6 000</td><td>产品做完，成本定型</td></tr>
+      <tr><td><strong>主营业务成本</strong></td><td>6 000</td><td>卖掉了，成本转为费用，与收入配比</td></tr>
+    </tbody>
+  </table>
+
+  <div class="card warn">
+    <div class="card-t">最容易错的三处</div>
+    <ol style="margin:0; font-size:13.5px">
+      <li><strong>把进项税额记进成本</strong>。一般纳税人可抵扣，必须单列「应交税费—应交增值税（进项税额）」；只有小规模纳税人或取得普通发票时才计入成本。</li>
+      <li><strong>销售只做收入不做成本</strong>。收入与成本必须<strong>同期配比</strong>，否则当期利润虚高、存货虚增。</li>
+      <li><strong>把车间主任工资记进管理费用</strong>。车间主任属于生产管理人员，进「制造费用」；只有厂部行政人员才进「管理费用」。</li>
+    </ol>
+  </div>
+
+  <div class="quiz" data-q="14">
+    <div class="quiz-h">随 堂 检 测</div>
+    <div class="quiz-q">Q15：润叶公司 3 月 10 日采购木料、3 月 20 日才验收入库。3 月 10 日应借记哪个科目？</div>
+    <div class="opt" onclick="pick(this,false,14)">A. 原材料</div>
+    <div class="opt" onclick="pick(this,true,14)">B. 在途物资</div>
+    <div class="opt" onclick="pick(this,false,14)">C. 库存商品</div>
+    <div class="qfb" id="fb14"></div>
+  </div>
+</section>
+
+<!-- ==================== 15 财务管理导论 ==================== -->
+<section class="chapter" data-ch="15">
+  <div class="chead fin">
+    <span class="chnum">16</span>
     <div class="chead-body">
       <div class="kicker">财务管理（补充部分）</div>
       <h2>财务管理导论</h2>
@@ -3258,9 +3561,9 @@ abbr[title]:hover{color:var(--red);border-color:var(--red);}
 </section>
 
 <!-- ==================== 16 货币时间价值 ==================== -->
-<section class="chapter" data-ch="15">
+<section class="chapter" data-ch="16">
   <div class="chead fin">
-    <span class="chnum">16</span>
+    <span class="chnum">17</span>
     <div class="chead-body">
       <div class="kicker">财务管理（补充部分）</div>
       <h2>货币时间价值</h2>
@@ -3349,9 +3652,9 @@ abbr[title]:hover{color:var(--red);border-color:var(--red);}
 </section>
 
 <!-- ==================== 17 风险与收益 ==================== -->
-<section class="chapter" data-ch="16">
+<section class="chapter" data-ch="17">
   <div class="chead fin">
-    <span class="chnum">17</span>
+    <span class="chnum">18</span>
     <div class="chead-body">
       <div class="kicker">财务管理（补充部分）</div>
       <h2>风险与收益</h2>
@@ -3454,9 +3757,9 @@ abbr[title]:hover{color:var(--red);border-color:var(--red);}
 </section>
 
 <!-- ==================== 18 资本预算 ==================== -->
-<section class="chapter" data-ch="17">
+<section class="chapter" data-ch="18">
   <div class="chead fin">
-    <span class="chnum">18</span>
+    <span class="chnum">19</span>
     <div class="chead-body">
       <div class="kicker">财务管理（补充部分）</div>
       <h2>资本预算决策</h2>
@@ -3554,9 +3857,9 @@ abbr[title]:hover{color:var(--red);border-color:var(--red);}
 </section>
 
 <!-- ==================== 19 资本成本与资本结构 ==================== -->
-<section class="chapter" data-ch="18">
+<section class="chapter" data-ch="19">
   <div class="chead fin">
-    <span class="chnum">19</span>
+    <span class="chnum">20</span>
     <div class="chead-body">
       <div class="kicker">财务管理（补充部分）</div>
       <h2>资本成本与资本结构</h2>
@@ -3665,9 +3968,9 @@ abbr[title]:hover{color:var(--red);border-color:var(--red);}
 </section>
 
 <!-- ==================== 20 营运资本管理 ==================== -->
-<section class="chapter" data-ch="19">
+<section class="chapter" data-ch="20">
   <div class="chead fin">
-    <span class="chnum">20</span>
+    <span class="chnum">21</span>
     <div class="chead-body">
       <div class="kicker">财务管理（补充部分）</div>
       <h2>营运资本管理</h2>
@@ -3761,9 +4064,9 @@ abbr[title]:hover{color:var(--red);border-color:var(--red);}
 </section>
 
 <!-- ==================== 21 财务报表分析 ==================== -->
-<section class="chapter" data-ch="20">
+<section class="chapter" data-ch="21">
   <div class="chead fin">
-    <span class="chnum">21</span>
+    <span class="chnum">22</span>
     <div class="chead-body">
       <div class="kicker">财务管理（补充部分）</div>
       <h2>财务报表分析</h2>
@@ -3917,9 +4220,9 @@ abbr[title]:hover{color:var(--red);border-color:var(--red);}
 </section>
 
 <!-- ==================== 22 长期筹资与股利政策 ==================== -->
-<section class="chapter" data-ch="21">
+<section class="chapter" data-ch="22">
   <div class="chead fin">
-    <span class="chnum">22</span>
+    <span class="chnum">23</span>
     <div class="chead-body">
       <div class="kicker">财务管理 · 筹资与分配</div>
       <h2>长期筹资与股利政策</h2>
@@ -4232,9 +4535,9 @@ abbr[title]:hover{color:var(--red);border-color:var(--red);}
 </section>
 
 <!-- ==================== 23 真题全解 ==================== -->
-<section class="chapter" data-ch="22">
+<section class="chapter" data-ch="23">
   <div class="chead fin">
-    <span class="chnum">23</span>
+    <span class="chnum">24</span>
     <div class="chead-body">
       <div class="kicker">备考 · 2024—2025 第一学期</div>
       <h2>真题全解 · 会计与财务管理基础</h2>
@@ -4245,14 +4548,14 @@ abbr[title]:hover{color:var(--red);border-color:var(--red);}
   <div class="paper-head">
     <div class="ph-t">天津大学 2024—2025 学年第 1 学期期末考试试卷</div>
     <div class="ph-m">《会计与财务管理基础》（A 卷　共 4 页）　考试时间：2024 年 12 月 27 日　满分 100 分</div>
-    <table class="compact">
+    <div class="tbl-scroll"><table class="compact">
       <thead><tr><th style="width:34%">题型</th><th>题量</th><th>分值</th><th>占比</th><th>建议用时</th></tr></thead>
       <tbody>
         <tr><td>一、单项选择题</td><td>10 题</td><td>20 分（每题 2 分）</td><td>20%</td><td>20 分钟</td></tr>
         <tr><td>二、简答题</td><td>6 题</td><td>36 分（每题 6 分）</td><td>36%</td><td>30 分钟</td></tr>
         <tr><td>三、综合计算分析题</td><td>3 题</td><td>44 分（14 + 18 + 12）</td><td>44%</td><td>50 分钟</td></tr>
       </tbody>
-    </table>
+    </table></div>
   </div>
 
   <div class="card warn">
@@ -4529,7 +4832,7 @@ abbr[title]:hover{color:var(--red);border-color:var(--red);}
       某公司 2023 年年末的流动比率为 1.98，资产负债率为 44.9778%，当年的股东权益净利率（年初与年末平均股东权益计算）为 25.151%，应收账款周转率为 13.8686（按营业收入以及年初、年末平均应收账款计算），当年的营业收入为 9500 万元。<br>
       要求：（1）计算下表中「√」处的金额（列出计算过程，结果按万元取整）；（2）计算该公司 2023 年的总资产周转率、销售净利率和资产净利率（百分数保留两位小数）。
     </div>
-    <table class="compact">
+    <div class="tbl-scroll"><table class="compact">
       <thead><tr><th>报表项目</th><th class="num">年初余额（万元）</th><th class="num">年末余额（万元）</th></tr></thead>
       <tbody>
         <tr><td>应收账款</td><td class="num">672</td><td class="num">√</td></tr>
@@ -4539,7 +4842,7 @@ abbr[title]:hover{color:var(--red);border-color:var(--red);}
         <tr><td>负债总额</td><td class="num">1824</td><td class="num">√</td></tr>
         <tr><td>所有者权益</td><td class="num">1500</td><td class="num">√</td></tr>
       </tbody>
-    </table>
+    </table></div>
     <details><summary>展开解题过程</summary><div class="dbody">
       <div class="sol">
         <div class="sol-step"><div class="sl">① 年末负债</div><div class="sv">4500 × 44.9778% ≈ <strong>2024</strong> 万元</div></div>
@@ -4566,7 +4869,7 @@ abbr[title]:hover{color:var(--red);border-color:var(--red);}
     </div>
     <details><summary>展开解题过程</summary><div class="dbody">
       <p><strong>年折旧额</strong> = (300 − 50) ÷ 5 = 50 万元。</p>
-      <table class="compact">
+      <div class="tbl-scroll"><table class="compact">
         <thead><tr><th>项目（万元）</th><th class="num">第 0 年</th><th class="num">第 1 年</th><th class="num">第 2 年</th><th class="num">第 3 年</th><th class="num">第 4 年</th><th class="num">第 5 年</th></tr></thead>
         <tbody>
           <tr><td>初始现金流量</td><td class="num">−330</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td></tr>
@@ -4574,7 +4877,7 @@ abbr[title]:hover{color:var(--red);border-color:var(--red);}
           <tr><td>终结现金流量</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">80</td></tr>
           <tr><td><strong>合计</strong></td><td class="num"><strong>−330</strong></td><td class="num"><strong>95</strong></td><td class="num"><strong>91.25</strong></td><td class="num"><strong>87.5</strong></td><td class="num"><strong>83.75</strong></td><td class="num"><strong>160</strong></td></tr>
         </tbody>
-      </table>
+      </table></div>
       <div class="sol">
         <div class="sol-step"><div class="sl">营业现金流</div><div class="sv">第 1 年：(150−40−50)×(1−25%)+50 = 95；第 2 年付现 45 → 91.25；第 3 年 50 → 87.5；第 4 年 55 → 83.75；第 5 年 60 → 80</div></div>
         <div class="sol-step"><div class="sl">终结现金流</div><div class="sv">残值 50 + 收回营运资本 30 = 80</div></div>
@@ -4639,9 +4942,9 @@ abbr[title]:hover{color:var(--red);border-color:var(--red);}
 </section>
 
 <!-- ==================== 24 题库练习 ==================== -->
-<section class="chapter" data-ch="23">
+<section class="chapter" data-ch="24">
   <div class="chead">
-    <span class="chnum">24</span>
+    <span class="chnum">25</span>
     <div class="chead-body">
       <div class="kicker">备考 · 自测</div>
       <h2>题库练习</h2>
@@ -4681,9 +4984,9 @@ abbr[title]:hover{color:var(--red);border-color:var(--red);}
 </section>
 
 <!-- ==================== 25 速查 ==================== -->
-<section class="chapter" data-ch="24">
+<section class="chapter" data-ch="25">
   <div class="chead">
-    <span class="chnum">25</span>
+    <span class="chnum">26</span>
     <div class="chead-body">
       <div class="kicker">备考 · 随身页</div>
       <h2>公式 · 分录 · 考前清单</h2>
@@ -4939,7 +5242,7 @@ abbr[title]:hover{color:var(--red);border-color:var(--red);}
   <div class="kg-head">
     <div>
       <div class="kg-title">知识点网络</div>
-      <div class="kg-sub">92 个知识点 · 圆形知识地图 · 点击节点查看关系</div>
+      <div class="kg-sub">95 个知识点 · 圆形知识地图 · 点击节点查看关系</div>
     </div>
     <div class="kg-head-right">
       <div class="kg-chips" id="kgChips"></div>
@@ -5454,32 +5757,38 @@ var BANK = [
 {id:'a28',cat:'acct',type:'multi',ch:5,q:'下列各项中，应在账户借方登记的有（　）。',o:['资产增加','成本费用增加','收入增加','负债减少','所有者权益减少'],a:[0,1,3,4],e:'借方登记资产增加、成本费用增加、负债与所有者权益减少；收入增加记贷方，所以 C 不选。'},
 
 /* ---------- 财管 ---------- */
-{id:'f1',cat:'fin',type:'single',ch:14,q:'下列财务管理目标中，最能体现资金时间价值与风险因素的是（　）。',o:['利润最大化','每股收益最大化','股东财富最大化','销售收入最大化'],a:[2],e:'股东财富最大化以股票市价衡量，既考虑当前收益，也考虑时间价值与风险；利润最大化忽视这两点。'},
-{id:'f2',cat:'fin',type:'single',ch:15,q:'本金 10 000 元，年利率 10%，按复利计息 3 年后的终值最接近（　）。',o:['13 000 元','13 100 元','13 310 元','14 641 元'],a:[2],e:'FV = 10 000 × (1+10%)³ = 10 000 × 1.331 = 13 310 元。A 是单利算法，D 是 4 年的结果。'},
-{id:'f3',cat:'fin',type:'single',ch:15,q:'每年年末支付 1 000 元，年利率 8%，永续年金的现值为（　）。',o:['8 000 元','12 500 元','10 000 元','无限大'],a:[1],e:'永续年金现值 = A ÷ r = 1 000 ÷ 8% = 12 500 元。虽然支付无限期，但折现后收敛于有限值。'},
-{id:'f4',cat:'fin',type:'single',ch:15,q:'预付年金现值与普通年金现值的关系是（　）。',o:['二者相等','预付年金现值 = 普通年金现值 × (1+r)','预付年金现值 = 普通年金现值 ÷ (1+r)','预付年金现值 = 普通年金终值'],a:[1],e:'预付年金每期期初收付，比普通年金早一期，因此多计一期利息，乘以 (1+r)。'},
-{id:'f5',cat:'fin',type:'single',ch:16,q:'某股票 β = 0.6，说明（　）。',o:['该股票没有风险','其系统性风险低于市场平均水平','其总风险一定低于市场','其收益率必然高于市场'],a:[1],e:'β 衡量系统性风险，β=0.6 表示波动幅度约为市场的 0.6 倍，属防御型；但非系统性风险仍然存在。'},
-{id:'f6',cat:'fin',type:'single',ch:16,q:'无风险报酬率 4%，市场平均报酬率 9%，某股票 β = 1.2，其必要报酬率为（　）。',o:['8.0%','9.0%','10.0%','14.8%'],a:[2],e:'E(R) = 4% + 1.2 × (9%−4%) = 4% + 6% = 10%。'},
-{id:'f7',cat:'fin',type:'single',ch:16,q:'衡量单项资产风险大小的绝对指标是（　）。',o:['标准差','变异系数','β 系数','期望收益率'],a:[0],e:'标准差是绝对风险指标；变异系数（标准差÷期望值）用于比较不同规模项目的相对风险；β 衡量系统性风险。'},
-{id:'f8',cat:'fin',type:'single',ch:17,q:'某项目净现值恰好等于 0，说明（　）。',o:['项目亏损','项目收益率正好等于必要报酬率','项目现金流为 0','应拒绝该项目'],a:[1],e:'NPV=0 表示项目创造的回报刚好覆盖资本成本，处于盈亏平衡点，理论上可接受也可拒绝。'},
-{id:'f9',cat:'fin',type:'single',ch:17,q:'两个互斥项目寿命期相同，决策应选择（　）。',o:['内含报酬率较高者','回收期较短者','净现值较大者','投资规模较小者'],a:[2],e:'寿命相同的互斥项目以 NPV 为准，因为 NPV 直接衡量股东财富的增量。IRR 在规模不同时可能误导。'},
-{id:'f10',cat:'fin',type:'single',ch:17,q:'计算投资项目初始现金流量时，不应包括（　）。',o:['固定资产投资','营运资本垫支','设备安装费','项目决策前已发生的市场调研费'],a:[3],e:'决策前已发生的支出属于沉没成本，与当前决策无关，不计入增量现金流。'},
-{id:'f11',cat:'fin',type:'single',ch:18,q:'债券票面利率 8%，筹资费率 0.5%，所得税率 25%，其资本成本最接近（　）。',o:['8.00%','7.50%','6.03%','5.75%'],a:[2],e:'Kd = 8% × (1−25%) ÷ (1−0.5%) = 6% ÷ 0.995 ≈ 6.03%。'},
-{id:'f12',cat:'fin',type:'single',ch:18,q:'计算 WACC 时，权重最准确的口径是（　）。',o:['账面价值','市场价值','历史成本','目标结构下的账面价值'],a:[1],e:'市场价值最能反映当前真实的资本成本与融资比例；账面价值可能严重偏离实际。'},
-{id:'f13',cat:'fin',type:'single',ch:18,q:'有税 MM 理论认为负债能提高企业价值，主要原因是（　）。',o:['债务成本永远最低','利息可税前扣除，产生税盾','债权人参与经营','负债没有风险'],a:[1],e:'利息在税前扣除，相当于政府承担了部分利息成本，形成税盾，从而提升企业价值。'},
-{id:'f14',cat:'fin',type:'single',ch:18,q:'边际贡献 720 万元，息税前利润 370 万元，营业杠杆系数为（　）。',o:['1.21','1.95','2.36','0.51'],a:[1],e:'DOL = 边际贡献 ÷ EBIT = 720 ÷ 370 ≈ 1.95。'},
-{id:'f15',cat:'fin',type:'single',ch:18,q:'EBIT 370 万元，利息 64.8 万元，财务杠杆系数为（　）。',o:['1.21','1.95','2.36','0.83'],a:[0],e:'DFL = EBIT ÷ (EBIT − I) = 370 ÷ 305.2 ≈ 1.21。'},
-{id:'f16',cat:'fin',type:'single',ch:19,q:'经济订货批量（EOQ）模型的核心目标是（　）。',o:['存货数量最少','订货成本与储存成本之和最低','采购单价最低','缺货成本最低'],a:[1],e:'EOQ 使订货成本与储存成本之和最小，此时两者恰好相等。'},
-{id:'f17',cat:'fin',type:'single',ch:19,q:'信用条件「2/10，n/30」的含义是（　）。',o:['10 天内付款享 2 元折扣，30 天付款','10 天内付款享 2% 折扣，30 天内全额付清','2 天内付款享 10% 折扣','30 天内付款享 2% 折扣'],a:[1],e:'2/10 表示 10 天内付款可享 2% 现金折扣；n/30 表示信用期 30 天，到期全额付款。'},
-{id:'f18',cat:'fin',type:'single',ch:20,q:'杜邦分析把 ROE 分解为（　）。',o:['毛利率 × 周转率 × 负债率','净利率 × 周转率 × 权益乘数','净利率 × 毛利率 × 权益乘数','ROA × 资产负债率'],a:[1],e:'ROE = 销售净利率 × 总资产周转率 × 权益乘数，分别对应盈利能力、营运效率、财务杠杆三条路径。'},
-{id:'f19',cat:'fin',type:'single',ch:20,q:'市盈率为 12 倍，意味着（　）。',o:['股价是每股净资产的 12 倍','市场愿为每 1 元利润支付 12 元','公司 12 年不分红','股息率为 12%'],a:[1],e:'PE = 每股市价 ÷ 每股收益，12 倍表示市场愿为每 1 元利润付 12 元，可理解为按当前盈利水平 12 年回本。'},
-{id:'f20',cat:'fin',type:'single',ch:21,q:'可转换债券面值 1 000 元，转换价格 25 元/股，转换比率为（　）。',o:['25 股','40 股','0.025 股','1 000 股'],a:[1],e:'转换比率 = 债券面值 ÷ 转换价格 = 1 000 ÷ 25 = 40 股。'},
-{id:'f21',cat:'fin',type:'single',ch:21,q:'净利润 1 000 万元，投资预算 800 万元，目标权益比重 60%，剩余股利政策下可分配股利为（　）。',o:['1 000 万元','800 万元','520 万元','480 万元'],a:[2],e:'所需权益资金 = 800 × 60% = 480 万元；可分配 = 1 000 − 480 = 520 万元。'},
-{id:'f22',cat:'fin',type:'tf',ch:18,q:'判断：计算普通股资本成本时，也应像债券一样乘以 (1−所得税率)。',o:['正确','错误'],a:[1],e:'错误。股利在税后支付，不能抵税，因此普通股成本不乘 (1−T)；债券利息可税前扣除，才需要乘。'},
-{id:'f23',cat:'fin',type:'tf',ch:17,q:'判断：对同一项目，IRR 与 NPV 的决策结论在任何情况下都一致。',o:['正确','错误'],a:[1],e:'错误。单一项目通常一致；但互斥项目在投资规模、寿命期或现金流时间分布不同时，两种方法可能给出相反结论，此时以 NPV 为准。'},
-{id:'f24',cat:'fin',type:'tf',ch:21,q:'判断：发放股票股利会减少所有者权益总额。',o:['正确','错误'],a:[1],e:'错误。股票股利只是把未分配利润转为股本与资本公积，所有者权益总额不变，股数增加、每股收益下降。'},
-{id:'f25',cat:'fin',type:'multi',ch:21,q:'下列属于普通股融资优点的有（　）。',o:['无固定股利负担','无到期日，不需偿还本金','增强公司信誉与举债能力','稀释原有股东控制权','资本成本较低'],a:[0,1,2],e:'前三项是优点；稀释控制权与资本成本高是缺点。普通股成本高于债务成本，因为股利不能抵税且股东要求风险溢价。'},
-{id:'f26',cat:'fin',type:'multi',ch:18,q:'下列因素中，会影响加权平均资本成本的有（　）。',o:['债务资本成本','权益资本成本','资本结构（负债与权益比重）','所得税税率','固定资产折旧方法'],a:[0,1,2,3],e:'WACC = ΣWjKj，权重、各项资本成本、税率（通过税后债务成本）都会影响它；折旧方法影响会计利润，不直接进入 WACC。'}
+{id:'f1',cat:'fin',type:'single',ch:15,q:'下列财务管理目标中，最能体现资金时间价值与风险因素的是（　）。',o:['利润最大化','每股收益最大化','股东财富最大化','销售收入最大化'],a:[2],e:'股东财富最大化以股票市价衡量，既考虑当前收益，也考虑时间价值与风险；利润最大化忽视这两点。'},
+{id:'f2',cat:'fin',type:'single',ch:16,q:'本金 10 000 元，年利率 10%，按复利计息 3 年后的终值最接近（　）。',o:['13 000 元','13 100 元','13 310 元','14 641 元'],a:[2],e:'FV = 10 000 × (1+10%)³ = 10 000 × 1.331 = 13 310 元。A 是单利算法，D 是 4 年的结果。'},
+{id:'f3',cat:'fin',type:'single',ch:16,q:'每年年末支付 1 000 元，年利率 8%，永续年金的现值为（　）。',o:['8 000 元','12 500 元','10 000 元','无限大'],a:[1],e:'永续年金现值 = A ÷ r = 1 000 ÷ 8% = 12 500 元。虽然支付无限期，但折现后收敛于有限值。'},
+{id:'f4',cat:'fin',type:'single',ch:16,q:'预付年金现值与普通年金现值的关系是（　）。',o:['二者相等','预付年金现值 = 普通年金现值 × (1+r)','预付年金现值 = 普通年金现值 ÷ (1+r)','预付年金现值 = 普通年金终值'],a:[1],e:'预付年金每期期初收付，比普通年金早一期，因此多计一期利息，乘以 (1+r)。'},
+{id:'f5',cat:'fin',type:'single',ch:17,q:'某股票 β = 0.6，说明（　）。',o:['该股票没有风险','其系统性风险低于市场平均水平','其总风险一定低于市场','其收益率必然高于市场'],a:[1],e:'β 衡量系统性风险，β=0.6 表示波动幅度约为市场的 0.6 倍，属防御型；但非系统性风险仍然存在。'},
+{id:'f6',cat:'fin',type:'single',ch:17,q:'无风险报酬率 4%，市场平均报酬率 9%，某股票 β = 1.2，其必要报酬率为（　）。',o:['8.0%','9.0%','10.0%','14.8%'],a:[2],e:'E(R) = 4% + 1.2 × (9%−4%) = 4% + 6% = 10%。'},
+{id:'f7',cat:'fin',type:'single',ch:17,q:'衡量单项资产风险大小的绝对指标是（　）。',o:['标准差','变异系数','β 系数','期望收益率'],a:[0],e:'标准差是绝对风险指标；变异系数（标准差÷期望值）用于比较不同规模项目的相对风险；β 衡量系统性风险。'},
+{id:'f8',cat:'fin',type:'single',ch:18,q:'某项目净现值恰好等于 0，说明（　）。',o:['项目亏损','项目收益率正好等于必要报酬率','项目现金流为 0','应拒绝该项目'],a:[1],e:'NPV=0 表示项目创造的回报刚好覆盖资本成本，处于盈亏平衡点，理论上可接受也可拒绝。'},
+{id:'f9',cat:'fin',type:'single',ch:18,q:'两个互斥项目寿命期相同，决策应选择（　）。',o:['内含报酬率较高者','回收期较短者','净现值较大者','投资规模较小者'],a:[2],e:'寿命相同的互斥项目以 NPV 为准，因为 NPV 直接衡量股东财富的增量。IRR 在规模不同时可能误导。'},
+{id:'f10',cat:'fin',type:'single',ch:18,q:'计算投资项目初始现金流量时，不应包括（　）。',o:['固定资产投资','营运资本垫支','设备安装费','项目决策前已发生的市场调研费'],a:[3],e:'决策前已发生的支出属于沉没成本，与当前决策无关，不计入增量现金流。'},
+{id:'f11',cat:'fin',type:'single',ch:19,q:'债券票面利率 8%，筹资费率 0.5%，所得税率 25%，其资本成本最接近（　）。',o:['8.00%','7.50%','6.03%','5.75%'],a:[2],e:'Kd = 8% × (1−25%) ÷ (1−0.5%) = 6% ÷ 0.995 ≈ 6.03%。'},
+{id:'f12',cat:'fin',type:'single',ch:19,q:'计算 WACC 时，权重最准确的口径是（　）。',o:['账面价值','市场价值','历史成本','目标结构下的账面价值'],a:[1],e:'市场价值最能反映当前真实的资本成本与融资比例；账面价值可能严重偏离实际。'},
+{id:'f13',cat:'fin',type:'single',ch:19,q:'有税 MM 理论认为负债能提高企业价值，主要原因是（　）。',o:['债务成本永远最低','利息可税前扣除，产生税盾','债权人参与经营','负债没有风险'],a:[1],e:'利息在税前扣除，相当于政府承担了部分利息成本，形成税盾，从而提升企业价值。'},
+{id:'f14',cat:'fin',type:'single',ch:19,q:'边际贡献 720 万元，息税前利润 370 万元，营业杠杆系数为（　）。',o:['1.21','1.95','2.36','0.51'],a:[1],e:'DOL = 边际贡献 ÷ EBIT = 720 ÷ 370 ≈ 1.95。'},
+{id:'f15',cat:'fin',type:'single',ch:19,q:'EBIT 370 万元，利息 64.8 万元，财务杠杆系数为（　）。',o:['1.21','1.95','2.36','0.83'],a:[0],e:'DFL = EBIT ÷ (EBIT − I) = 370 ÷ 305.2 ≈ 1.21。'},
+{id:'f16',cat:'fin',type:'single',ch:20,q:'经济订货批量（EOQ）模型的核心目标是（　）。',o:['存货数量最少','订货成本与储存成本之和最低','采购单价最低','缺货成本最低'],a:[1],e:'EOQ 使订货成本与储存成本之和最小，此时两者恰好相等。'},
+{id:'f17',cat:'fin',type:'single',ch:20,q:'信用条件「2/10，n/30」的含义是（　）。',o:['10 天内付款享 2 元折扣，30 天付款','10 天内付款享 2% 折扣，30 天内全额付清','2 天内付款享 10% 折扣','30 天内付款享 2% 折扣'],a:[1],e:'2/10 表示 10 天内付款可享 2% 现金折扣；n/30 表示信用期 30 天，到期全额付款。'},
+{id:'f18',cat:'fin',type:'single',ch:21,q:'杜邦分析把 ROE 分解为（　）。',o:['毛利率 × 周转率 × 负债率','净利率 × 周转率 × 权益乘数','净利率 × 毛利率 × 权益乘数','ROA × 资产负债率'],a:[1],e:'ROE = 销售净利率 × 总资产周转率 × 权益乘数，分别对应盈利能力、营运效率、财务杠杆三条路径。'},
+{id:'f19',cat:'fin',type:'single',ch:21,q:'市盈率为 12 倍，意味着（　）。',o:['股价是每股净资产的 12 倍','市场愿为每 1 元利润支付 12 元','公司 12 年不分红','股息率为 12%'],a:[1],e:'PE = 每股市价 ÷ 每股收益，12 倍表示市场愿为每 1 元利润付 12 元，可理解为按当前盈利水平 12 年回本。'},
+{id:'f20',cat:'fin',type:'single',ch:22,q:'可转换债券面值 1 000 元，转换价格 25 元/股，转换比率为（　）。',o:['25 股','40 股','0.025 股','1 000 股'],a:[1],e:'转换比率 = 债券面值 ÷ 转换价格 = 1 000 ÷ 25 = 40 股。'},
+{id:'f21',cat:'fin',type:'single',ch:22,q:'净利润 1 000 万元，投资预算 800 万元，目标权益比重 60%，剩余股利政策下可分配股利为（　）。',o:['1 000 万元','800 万元','520 万元','480 万元'],a:[2],e:'所需权益资金 = 800 × 60% = 480 万元；可分配 = 1 000 − 480 = 520 万元。'},
+{id:'f22',cat:'fin',type:'tf',ch:19,q:'判断：计算普通股资本成本时，也应像债券一样乘以 (1−所得税率)。',o:['正确','错误'],a:[1],e:'错误。股利在税后支付，不能抵税，因此普通股成本不乘 (1−T)；债券利息可税前扣除，才需要乘。'},
+{id:'f23',cat:'fin',type:'tf',ch:18,q:'判断：对同一项目，IRR 与 NPV 的决策结论在任何情况下都一致。',o:['正确','错误'],a:[1],e:'错误。单一项目通常一致；但互斥项目在投资规模、寿命期或现金流时间分布不同时，两种方法可能给出相反结论，此时以 NPV 为准。'},
+{id:'f24',cat:'fin',type:'tf',ch:22,q:'判断：发放股票股利会减少所有者权益总额。',o:['正确','错误'],a:[1],e:'错误。股票股利只是把未分配利润转为股本与资本公积，所有者权益总额不变，股数增加、每股收益下降。'},
+{id:'f25',cat:'fin',type:'multi',ch:22,q:'下列属于普通股融资优点的有（　）。',o:['无固定股利负担','无到期日，不需偿还本金','增强公司信誉与举债能力','稀释原有股东控制权','资本成本较低'],a:[0,1,2],e:'前三项是优点；稀释控制权与资本成本高是缺点。普通股成本高于债务成本，因为股利不能抵税且股东要求风险溢价。'},
+{id:'f26',cat:'fin',type:'multi',ch:19,q:'下列因素中，会影响加权平均资本成本的有（　）。',o:['债务资本成本','权益资本成本','资本结构（负债与权益比重）','所得税税率','固定资产折旧方法'],a:[0,1,2,3],e:'WACC = ΣWjKj，权重、各项资本成本、税率（通过税后债务成本）都会影响它；折旧方法影响会计利润，不直接进入 WACC。'},
+{id:'a29',cat:'acct',type:'single',ch:14,q:'企业采购原材料，货款已付但货物尚在运输途中，应借记（　）。',
+o:['原材料','在途物资','库存商品','主营业务成本'],a:[1],
+e:'钱付了、货未到，所有权已归企业但实物未入库，先记「在途物资」；验收入库后再转入「原材料」。'},
+{id:'a30',cat:'acct',type:'single',ch:14,q:'生产车间管理人员的工资应计入（　）。',
+o:['生产成本','制造费用','管理费用','销售费用'],a:[1],
+e:'车间管理人员不直接生产产品，其薪酬属于间接费用，先归集到「制造费用」，期末再分配计入生产成本。厂部行政人员才计入管理费用。'}
 ];
 
 /* ---------- 状态：只保存在当前页面内存中，刷新即清空 ---------- */
@@ -6221,12 +6530,13 @@ document.querySelectorAll('[data-master]').forEach(function(cb){
   if(!(start>=0 && start<TOTAL)) start=0;
   go(start, {noScroll:true});
   window.scrollTo(0,0);
+  document.body.setAttribute('data-booted','1');
 })();
 
 </script>
 <script>
 /* ============================================================
-   知识点网络：92 个知识点 · 五卷聚类 · 可缩放/筛选/跳章
+   知识点网络：95 个知识点 · 五卷聚类 · 可缩放/筛选/跳章
    ============================================================ */
 (function(){
   var GROUPS = [
@@ -6312,33 +6622,36 @@ document.querySelectorAll('[data-master]').forEach(function(cb){
     {id:'present', n:'报表列报要求', g:3, ch:13, d:'真实、完整、及时、可比等六项列报要求。'},
 
     /* 卷五 财务管理 */
-    {id:'goal', n:'财务管理目标', g:4, ch:14, d:'股东财富最大化，兼顾债权人、员工等利益相关者。'},
-    {id:'agency', n:'代理问题', g:4, ch:14, d:'股东与经营者、债权人之间的利益冲突及治理机制。'},
-    {id:'tvm', n:'货币时间价值', g:4, ch:15, d:'同一金额在不同时点价值不同，是折现的基础。'},
-    {id:'comp', n:'复利', g:4, ch:15, d:'利滚利，FV = PV × (1+r)ⁿ。'},
-    {id:'annuity', n:'年金', g:4, ch:15, d:'等额、等间隔的系列收付，分普通、预付、递延、永续。'},
-    {id:'risk', n:'风险与收益', g:4, ch:16, d:'高风险要求高回报，风险分系统性与非系统性。'},
-    {id:'beta', n:'β系数', g:4, ch:16, en:'Beta Coefficient', d:'贝塔系数：衡量系统性风险，市场组合 β = 1。'},
-    {id:'capm', n:'CAPM', g:4, ch:16, en:'Capital Asset Pricing Model', d:'资本资产定价模型：E(R) = Rf + β(Rm − Rf)，给风险定价。'},
-    {id:'budget', n:'资本预算', g:4, ch:17, d:'用 NPV、IRR、回收期评价长期投资项目。'},
-    {id:'npv', n:'NPV', g:4, ch:17, en:'Net Present Value', d:'净现值：未来现金流现值减初始投资，大于 0 才创造价值。'},
-    {id:'irr', n:'IRR', g:4, ch:17, en:'Internal Rate of Return', d:'内含报酬率：使 NPV 为零的折现率，高于资本成本可行。'},
-    {id:'sunk', n:'沉没成本', g:4, ch:17, d:'已发生且不可收回，不进入决策的增量现金流。'},
-    {id:'costcap', n:'资本成本', g:4, ch:18, d:'投资者要求的最低报酬率，也是项目的折现率。'},
-    {id:'wacc', n:'WACC', g:4, ch:18, en:'Weighted Average Cost of Capital', d:'加权平均资本成本：各类资本成本按权重加权，是投资门槛。'},
-    {id:'mm', n:'MM理论', g:4, ch:18, en:'Modigliani-Miller Theorem', d:'MM 定理：有税时负债的税盾提升企业价值。'},
-    {id:'dol', n:'经营杠杆', g:4, ch:18, d:'边际贡献 ÷ EBIT，衡量经营风险。'},
-    {id:'dfl', n:'财务杠杆', g:4, ch:18, d:'EBIT ÷ (EBIT − I)，衡量财务风险。'},
-    {id:'wc', n:'营运资本', g:4, ch:19, d:'流动资产减流动负债，反映短期偿债与周转。'},
-    {id:'eoq', n:'EOQ', g:4, ch:19, en:'Economic Order Quantity', d:'经济订货批量：使订货成本与储存成本之和最低的订货批量。'},
-    {id:'credit', n:'信用政策', g:4, ch:19, d:'信用标准、信用条件与收账政策的组合。'},
-    {id:'ratio', n:'财务比率', g:4, ch:20, d:'偿债、营运、盈利、市价四类比率。'},
-    {id:'dupont', n:'杜邦分析', g:4, ch:20, d:'ROE = 净利率 × 总资产周转率 × 权益乘数。'},
-    {id:'common', n:'普通股', g:4, ch:21, d:'永久资本，无固定股利，会稀释控制权。'},
-    {id:'bond', n:'债券', g:4, ch:21, d:'有期限、固定利息，利息可抵税。'},
-    {id:'convert', n:'可转换债券', g:4, ch:21, d:'纯债 + 看涨期权，票面利率低，转股稀释股权。'},
-    {id:'lease', n:'融资租赁', g:4, ch:21, d:'融资与融物结合，租金含设备价款、利息与手续费。'},
-    {id:'dividend', n:'股利政策', g:4, ch:21, d:'剩余股利、固定股利、固定支付率、低正常加额外。'}
+    {id:'goal', n:'财务管理目标', g:4, ch:15, d:'股东财富最大化，兼顾债权人、员工等利益相关者。'},
+    {id:'agency', n:'代理问题', g:4, ch:15, d:'股东与经营者、债权人之间的利益冲突及治理机制。'},
+    {id:'tvm', n:'货币时间价值', g:4, ch:16, d:'同一金额在不同时点价值不同，是折现的基础。'},
+    {id:'comp', n:'复利', g:4, ch:16, d:'利滚利，FV = PV × (1+r)ⁿ。'},
+    {id:'annuity', n:'年金', g:4, ch:16, d:'等额、等间隔的系列收付，分普通、预付、递延、永续。'},
+    {id:'risk', n:'风险与收益', g:4, ch:17, d:'高风险要求高回报，风险分系统性与非系统性。'},
+    {id:'beta', n:'β系数', g:4, ch:17, en:'Beta Coefficient', d:'贝塔系数：衡量系统性风险，市场组合 β = 1。'},
+    {id:'capm', n:'CAPM', g:4, ch:17, en:'Capital Asset Pricing Model', d:'资本资产定价模型：E(R) = Rf + β(Rm − Rf)，给风险定价。'},
+    {id:'budget', n:'资本预算', g:4, ch:18, d:'用 NPV、IRR、回收期评价长期投资项目。'},
+    {id:'npv', n:'NPV', g:4, ch:18, en:'Net Present Value', d:'净现值：未来现金流现值减初始投资，大于 0 才创造价值。'},
+    {id:'irr', n:'IRR', g:4, ch:18, en:'Internal Rate of Return', d:'内含报酬率：使 NPV 为零的折现率，高于资本成本可行。'},
+    {id:'sunk', n:'沉没成本', g:4, ch:18, d:'已发生且不可收回，不进入决策的增量现金流。'},
+    {id:'costcap', n:'资本成本', g:4, ch:19, d:'投资者要求的最低报酬率，也是项目的折现率。'},
+    {id:'wacc', n:'WACC', g:4, ch:19, en:'Weighted Average Cost of Capital', d:'加权平均资本成本：各类资本成本按权重加权，是投资门槛。'},
+    {id:'mm', n:'MM理论', g:4, ch:19, en:'Modigliani-Miller Theorem', d:'MM 定理：有税时负债的税盾提升企业价值。'},
+    {id:'dol', n:'经营杠杆', g:4, ch:19, d:'边际贡献 ÷ EBIT，衡量经营风险。'},
+    {id:'dfl', n:'财务杠杆', g:4, ch:19, d:'EBIT ÷ (EBIT − I)，衡量财务风险。'},
+    {id:'wc', n:'营运资本', g:4, ch:20, d:'流动资产减流动负债，反映短期偿债与周转。'},
+    {id:'eoq', n:'EOQ', g:4, ch:20, en:'Economic Order Quantity', d:'经济订货批量：使订货成本与储存成本之和最低的订货批量。'},
+    {id:'credit', n:'信用政策', g:4, ch:20, d:'信用标准、信用条件与收账政策的组合。'},
+    {id:'ratio', n:'财务比率', g:4, ch:21, d:'偿债、营运、盈利、市价四类比率。'},
+    {id:'dupont', n:'杜邦分析', g:4, ch:21, d:'ROE = 净利率 × 总资产周转率 × 权益乘数。'},
+    {id:'common', n:'普通股', g:4, ch:22, d:'永久资本，无固定股利，会稀释控制权。'},
+    {id:'bond', n:'债券', g:4, ch:22, d:'有期限、固定利息，利息可抵税。'},
+    {id:'convert', n:'可转换债券', g:4, ch:22, d:'纯债 + 看涨期权，票面利率低，转股稀释股权。'},
+    {id:'lease', n:'融资租赁', g:4, ch:22, d:'融资与融物结合，租金含设备价款、利息与手续费。'},
+    {id:'dividend', n:'股利政策', g:4, ch:22, d:'剩余股利、固定股利、固定支付率、低正常加额外。'},
+    {id:'ytwz', n:'在途物资', g:2, ch:14, d:'货款已付、货物未到时的过渡科目，验收入库后转入原材料。'},
+    {id:'ytsc', n:'完工入库', g:2, ch:14, d:'生产成本归集完毕转入库存商品，成本由此定型。'},
+    {id:'ytcb', n:'成本结转', g:2, ch:14, d:'销售时把库存商品成本转入主营业务成本，与收入同期配比。'}
   ];
 
   var EDGES = [
@@ -6361,7 +6674,9 @@ document.querySelectorAll('[data-master]').forEach(function(cb){
     ['beta','capm'],['capm','costcap'],['costcap','wacc'],['npv','budget'],['irr','budget'],['sunk','budget'],
     ['wacc','budget'],['wacc','mm'],['dol','dfl'],['wc','eoq'],['wc','credit'],['ratio','dupont'],
     ['ratio','bs'],['ratio','is'],['common','costcap'],['bond','costcap'],['convert','common'],['convert','bond'],
-    ['lease','bond'],['dividend','common'],['dividend','dist'],['npv','costcap'],['irr','costcap'],['goal','profit']
+    ['lease','bond'],['dividend','common'],['dividend','dist'],['npv','costcap'],['irr','costcap'],['goal','profit',
+    ['ytwz','raw'],['ytwz','ytcb'],['ytsc','ytcb'],['cost','ytcb'],['is','ytcb']
+  ]
   ];
 
   var N = NODES.length;
@@ -6445,7 +6760,7 @@ document.querySelectorAll('[data-master]').forEach(function(cb){
     var out='<g id="kgView">'
       +'<circle class="kg-ring" r="0"/><circle class="kg-ring" r="0"/>'
       +'<text class="kg-center" x="0" y="-6" text-anchor="middle">会计与财务管理</text>'
-      +'<text class="kg-center2" x="0" y="16" text-anchor="middle">92 个知识点</text>';
+      +'<text class="kg-center2" x="0" y="16" text-anchor="middle">95 个知识点</text>';
     EDGES.forEach(function(e,idx){
       var a=MAP[e[0]], b=MAP[e[1]];
       if(!a||!b) return;
@@ -6604,7 +6919,7 @@ document.querySelectorAll('[data-master]').forEach(function(cb){
   function updateCrumb(){
     var p=document.getElementById('kgPath');
     var n=SEL?MAP[SEL]:null;
-    if(p) p.innerHTML = n ? '<b>'+esc(n.n)+'</b>　'+n.rel.length+' 个关联' : '92 个知识点 · 点击查看关系';
+    if(p) p.innerHTML = n ? '<b>'+esc(n.n)+'</b>　'+n.rel.length+' 个关联' : '95 个知识点 · 点击查看关系';
     var b=document.getElementById('kgBack');
     if(b) b.style.display='none';
   }
@@ -6618,7 +6933,7 @@ document.querySelectorAll('[data-master]').forEach(function(cb){
         legend+='<div><i style="background:'+g.color+'"></i>'+g.name+'　<span style="color:var(--muted)">'+c+' 个</span></div>';
       });
       detail.innerHTML='<div class="kg-empty"><b>怎么用这张网</b>'
-        +'92 个知识点排成一个圆环，点击任意节点查看它的定义与关联关系；滚轮缩放，左侧可搜索或按卷筛选。</div>'
+        +'95 个知识点排成一个圆环，点击任意节点查看它的定义与关联关系；滚轮缩放，左侧可搜索或按卷筛选。</div>'
         +'<div class="kg-dsec">五卷分布</div><div class="kg-legend">'+legend+'</div>';
       return;
     }
@@ -7167,8 +7482,8 @@ document.querySelectorAll('[data-master]').forEach(function(cb){
     ov.classList.toggle('mode3', m==='3d');
     var sub=ov.querySelector('.kg-sub');
     if(sub) sub.textContent = (m==='3d')
-      ? '92 个知识点 · 3D 立体图谱 · 拖拽旋转 / 点击查看'
-      : '92 个知识点 · 圆形知识地图 · 点击节点查看关系';
+      ? '95 个知识点 · 3D 立体图谱 · 拖拽旋转 / 点击查看'
+      : '95 个知识点 · 圆形知识地图 · 点击节点查看关系';
     if(modeBtn) modeBtn.textContent = (m==='3d') ? '2D 图谱' : '3D 图谱';
     if(m==='3d'){ activate(); }
     else {
