@@ -36,18 +36,50 @@ function prep(c){
   if(!c) return null;
   var m = CH[c.id]; if(!m) return null;
   var LW = m[0], H = m[1];
-  var w = c.clientWidth || (c.parentNode ? c.parentNode.clientWidth : 0) || LW;
-  if(w < 60) w = LW;
-  if(c._w === w) return null;
+  /* 宽度必须取父容器的可用宽度，不能取 canvas 自身：
+     canvas 一旦被写入 style.width，就会把父容器撑开，clientWidth 随之变大，形成自锁。
+     因此测量前先把 canvas 的 CSS 宽度归零，让父容器回到真实可用宽度。 */
+  var host = c.parentNode;
+  c.style.width = '0px';
+  var w = 0;
+  if(host){
+    /* clientWidth 含 padding，必须扣掉左右内边距，否则画布比内容区宽，会被 max-width 二次压缩 */
+    var hs = getComputedStyle(host);
+    w = host.clientWidth - (parseFloat(hs.paddingLeft) || 0) - (parseFloat(hs.paddingRight) || 0);
+  }
+  if(!w || w < 60) w = LW;
+  /* 图表按 800 逻辑宽绘制，字号在里面。若压缩到手机宽度，字会小到看不清，
+     因此设下限，宁可让 .chart-box 横向滑动，也要保住可读字号。 */
+  var MINW = 620;
+  if(w < MINW) w = Math.min(MINW, LW);
+  if(c._w === w){
+    /* 尺寸没变，恢复原宽度即可，无需重绘 */
+    c.style.width = w + 'px';
+    return null;
+  }
   var dpr = Math.min(window.devicePixelRatio || 1, 2);
   var scale = w / LW;
   c.width = Math.round(w * dpr);
   c.height = Math.round(H * scale * dpr);
+  /* 位图按 dpr 放大保证清晰，CSS 尺寸锁定到 w */
+  c.style.width = w + 'px';
   c.style.height = (H * scale) + 'px';
+  /* 允许比容器宽：超出部分由 .chart-box 横向滚动承接，不能用 max-width 压回去 */
+  c.style.maxWidth = 'none';
   var ctx = c.getContext('2d');
   ctx.setTransform(scale * dpr, 0, 0, scale * dpr, 0, 0);
   ctx.clearRect(0, 0, LW, H);
   c._w = w;
+  /* 内容比容器宽时，按构图决定初始滚动位置：
+     环形/曲线/树状图是居中构图，居中显示才不空半边；
+     从左到右的流程图则保持左起，避免切掉起点。 */
+  if(host && host.scrollWidth > host.clientWidth + 1){
+    var CENTERED = {
+      eqBal:1, subjTree:1, cycleRing:1, bsChart:1, compCurve:1,
+      smlChart:1, npvCurve:1, waccCurve:1, dupontTree:1
+    };
+    host.scrollLeft = CENTERED[c.id] ? Math.round((host.scrollWidth - host.clientWidth) / 2) : 0;
+  }
   return {ctx:ctx, W:LW, H:H};
 }
 function rrect(ctx,x,y,w,h,r){
@@ -428,11 +460,13 @@ function drawFor(i){
   if(i===7) drawCycleRing();
   if(i===10) drawCostFlow();
   if(i===13) drawBS();
-  if(i===15) drawComp();
-  if(i===16) drawSML();
-  if(i===17) drawNPV();
-  if(i===18) drawWACC();
-  if(i===20) drawDupont();
+  /* 注意：第 15 章插入「润叶家具」整章后，财务各章整体后移一位，
+     这里的下标必须与 .chapter[data-ch] 保持一致 */
+  if(i===16) drawComp();
+  if(i===17) drawSML();
+  if(i===18) drawNPV();
+  if(i===19) drawWACC();
+  if(i===21) drawDupont();
 }
 var _rsz;
 window.addEventListener('resize', function(){
@@ -726,6 +760,8 @@ function go(i, opt){
   if(nt) nt.textContent = i<TOTAL-1 ? TITLES[i+1]+' →' : '已经是最后一章';
   document.body.classList.remove('nav-open');
   if(!opt.noScroll) window.scrollTo({top:0, behavior:'smooth'});
+  /* 切章时清掉尺寸缓存：章节从 display:none 变可见后，容器宽度才可信 */
+  target.querySelectorAll('canvas').forEach(function(cv){ cv._w = -1; });
   drawFor(i);
 }
 function next(){ if(CUR<TOTAL-1) go(CUR+1); }
@@ -1244,7 +1280,20 @@ document.querySelectorAll('[data-master]').forEach(function(cb){
 });
 
 /* ---------- 初始化 ---------- */
+/* 把每个图表 canvas 单独包进滚动容器：
+   否则图表横向滑动时，图注和图例也会跟着被推出可视区。 */
+function wrapChartCanvas(){
+  var list = document.querySelectorAll('.chart-box > canvas');
+  Array.prototype.forEach.call(list, function(cv){
+    if(cv.parentNode && cv.parentNode.className === 'cv-scroll') return;
+    var box = document.createElement('div');
+    box.className = 'cv-scroll';
+    cv.parentNode.insertBefore(box, cv);
+    box.appendChild(cv);
+  });
+}
 (function init(){
+  wrapChartCanvas();
   var secs = document.querySelectorAll('.chapter');
   TOTAL = secs.length;
   TITLES = Array.prototype.map.call(secs, function(s){

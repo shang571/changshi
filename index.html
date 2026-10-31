@@ -216,11 +216,8 @@
 .cfoot button:disabled em{color:var(--muted);}
 .qopt.plain{cursor:default;}
 .qopt.plain:hover{border-color:var(--rule);background:var(--paper);}
-.chart-box{overflow-x:auto;}
-.chart-box canvas{max-width:100%;}
-@media(max-width:700px){
-  .chart-box canvas{min-width:680px;}
-}
+.chart-box{overflow-x:visible;}
+.chart-box canvas{max-width:none;}
 .flash{animation:flashBg 1.8s ease;}
 @keyframes flashBg{0%,100%{background:transparent;}18%{background:rgba(176,74,51,.12);}60%{background:rgba(176,74,51,.06);}}
 </style>

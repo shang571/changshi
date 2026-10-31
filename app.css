@@ -332,8 +332,10 @@ table.compact td,table.compact th{padding:6px 10px;font-size:13px;}
 .quiz-foot button{font-family:var(--sans);font-size:10.5px;color:var(--muted);letter-spacing:1px;border-bottom:1px solid var(--rule);padding:2px 0;}
 .quiz-foot button:hover{color:var(--ink);border-color:var(--ink2);}
 
-/* 图表 */
-.chart-box{background:var(--sheet);border:1px solid var(--rule);padding:22px 18px 16px;margin:22px 0;}
+/* 图表 */.chart-box{background:var(--sheet);border:1px solid var(--rule);padding:22px 18px 16px;margin:22px 0;}
+/* 画布独立滚动层：宽图在窄屏横向滑动，图注不跟着跑 */
+.cv-scroll{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;}
+.cv-scroll canvas{display:block;}
 .chart-box .cap{
   font-family:var(--sans);font-size:11px;color:var(--muted);text-align:center;
   margin-top:12px;letter-spacing:.6px;line-height:1.7;
@@ -887,6 +889,16 @@ abbr[title]:hover{color:var(--red);border-color:var(--red);}
   .paper-head table th:nth-child(4),.paper-head table td:nth-child(4),
   .paper-head table th:nth-child(5),.paper-head table td:nth-child(5){display:none;}
   .tbtn kbd{display:none;}
+  /* 图表容器在窄屏收窄内边距；宽图保持可读字号，靠容器内横向滑动查看 */
+  .fig{padding:16px 12px 12px;}
+  .chart-box{padding:16px 12px 12px;}
+  .fig svg{max-width:100%;height:auto;}
+  /* 滑动提示：与 .fig-scroll 的提示保持一致 */
+  .chart-box:has(canvas)::before{
+    content:'← 左右滑动查看完整图表';display:block;text-align:right;
+    font-family:var(--sans);font-size:10.5px;color:var(--muted);
+    letter-spacing:.6px;margin-bottom:6px;
+  }
 }
 
 /* ---------- 打印 ---------- */
